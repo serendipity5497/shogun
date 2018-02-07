@@ -1,7 +1,7 @@
 /*
  * This software is distributed under BSD 3-clause license (see LICENSE file).
  *
- * Authors: Soeren Sonnenburg, Giovanni De Toni, Evan Shelhamer, 
+ * Authors: Soeren Sonnenburg, Giovanni De Toni, Evan Shelhamer,
  *          Sergey Lisitsyn
  */
 #ifndef __MKLCLASSIFICATION_H__
@@ -43,6 +43,7 @@ class CMKLClassification : public CMKL
 		 * @param machine the machine we want to cast
 		 * @return a MKLClassification machine (already SGREF'ed)
 		 */
+		SG_DEPRECATED("use .as template function")
 		static CMKLClassification* obtain_from_generic(CMachine* machine);
 
 		/** @return object name */

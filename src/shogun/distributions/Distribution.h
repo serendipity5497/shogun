@@ -1,7 +1,7 @@
 /*
  * This software is distributed under BSD 3-clause license (see LICENSE file).
  *
- * Authors: Soeren Sonnenburg, Björn Esser, Thoralf Klein, Fernando Iglesias, 
+ * Authors: Soeren Sonnenburg, Björn Esser, Thoralf Klein, Fernando Iglesias,
  *          Yuyu Zhang
  */
 
@@ -198,6 +198,7 @@ class CDistribution : public CSGObject
 		 * @param object generic object
 		 * @return Distribution object
 		 */
+		SG_DEPRECATED("use .as template function")
 		static CDistribution* obtain_from_generic(CSGObject* object);
 
 	protected:
