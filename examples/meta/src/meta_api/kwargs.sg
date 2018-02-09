@@ -35,6 +35,13 @@ matrix[1,1] = 0.4
 RealFeatures features()
 features.put("feature_matrix", matrix)
 
+RealVector vector(2)
+vector[0] = 0.0
+vector[1] = 0.1
+
+RegressionLabels labels()
+labels.put("labels", vector)
+
 Kernel k = kernel("GaussianKernel", log_width=2.0)
 KernelMachine svm = kernel_machine("LibSVM", C1=1.1, kernel=k)
 
