@@ -375,24 +375,32 @@ public:
  * @param name name of the parameter
  * @param value value of the parameter along with type information
  */
-#ifndef SWIG // c++ interface has put<T>, type-safe at compile time
+#ifndef SWIG // type-safe setting of CSGObject subclasses not available in SWIG
 		template <typename T,
 		          std::enable_if_t<std::is_convertible<T, CSGObject*>::value>* =
 		              nullptr>
 		void put(const std::string& name, const T value)
 		{
+			// TODO remove cast to CSGObject
+			// this is since paramters are registered using SG_ADD((CSGObject**)&obj,...)
+			// and any cannot cast subclasses into each other
 			CSGObject* v = value;
 			Tag<CSGObject*> tag(name);
 			put(tag, v);
 		}
-#else  // SWIG interface only has put<CSGObject*>, type checking is done at
-       // runtime
+#endif // SWIG
+
+		/** Setter for an object class parameter, identified by a name.
+		 * Throws an exception if the class does not have such a parameter.
+		 *
+		 * @param name name of the parameter
+		 * @param value value of the parameter along with type information
+		 */
 		void put(const std::string& name, CSGObject* value)
 		{
 			Tag<CSGObject*> tag(name);
-			put(tag, v);
+			put(tag, value);
 		}
-#endif // SWIG
 
 		/** Setter for a non-object class parameter, identified by a name.
 		 * Throws an exception if the class does not have such a parameter.
